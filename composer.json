@@ -1,0 +1,16 @@
+{
+    "name": "hamilcaron/sanctions",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Hamilcaron\\Sanctions\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hamilcaron",
+            "email": "hamilcaronolan@gmail.com"
+        }
+    ],
+    "require": {}
+}
