@@ -3,51 +3,42 @@ session_start();
 
 // Récupération de l'EntityManager
 $entityManager = require_once __DIR__ . '/../config/bootstrap.php';
-?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'Mon Site' ?></title>
-    <link rel="icon" href="../assets/image/icone%20gaudper.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
-<body>
-<!-- Header commun -->
-<?php include_once __DIR__ . '/../views/includes/header.php'; ?>
+require_once __DIR__ . '/../vendor/autoload.php';
 
-<!-- Contenu principal -->
-<main class="container py-4">
-    <?php
-    // Mise en place du routing
-    $route = $_GET['route'] ?? 'accueil';
+// Récupération des routes
+$routes = require_once __DIR__ . '/../config/routes.php';
 
-    // Tester la valeur de $route
-    switch ($route) {
-        case 'accueil':
-            $accueilControleur = new \App\Controleurs\AccueilControleur();
-            $accueilControleur->accueil();
-            break;
+// Récupération de l'URL actuelle
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        case 'mentions':
-            $accueilControleur = new \App\Controleurs\MentionsControleur();
-            $accueilControleur->mentions();
-            break;
+// Recherche de la route correspondante
+if (!isset($routes[$uri])) {
+    $errorController = new \App\Controleurs\ErrorController();
+    $errorController->error404();
+    exit;
+}
 
-        default:
-            http_response_code(404);
-            echo "Erreur 404 : Page non trouvée";
-            break;
+// Récupération du contrôleur et de l'action
+[$controllerName, $action] = $routes[$uri];
+$controllerClass = "App\\Controleurs\\{$controllerName}";
+
+//if ($controllerName == "InscriptionControleur"){
+//    $createAccount = new \App\UsersStory\CreateAccount($entityManager);
+//    $inscriptionControleur = new \App\Controleurs\InscriptionControleur($createAccount);
+//    $inscriptionControleur->$action();
+//}elseif ($controllerName == "ConnexionControleur"){
+//    $loginUser = new \App\UsersStory\Login($entityManager);
+//    $connexionController = new \App\Controleurs\ConnexionControleur($loginUser);
+//    $connexionController->$action();
+//}else{
+    try {
+        // Instanciation du contrôleur et appel de l'action
+        $controller = new $controllerClass($entityManager);
+        $controller->$action();
+    } catch (\Exception $e) {
+        error_log($e->getMessage());
+        $errorController = new \App\Controleurs\ErrorController();
+        $errorController->error404();
     }
-    ?>
-</main>
 
-<!-- Footer commun -->
-<?php include_once __DIR__ . '/../views/includes/footer.php'; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

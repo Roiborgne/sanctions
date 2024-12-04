@@ -1,5 +1,7 @@
+<?php $title = "Mentions - Mon Site"; ?>
+
 <div class="text-center">
-    <h1 class="mb-4">Mentions Légale</h1>
+    <h1 class="mb-4">Mentions Légales</h1>
 </div>
 
     <div class="row">

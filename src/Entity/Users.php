@@ -5,15 +5,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'users')]
-class User
+class Users
 {
     #[ORM\Id]
     #[ORM\Column(name: 'id_user', type: 'integer')]
     #[ORM\GeneratedValue]
     private int $id;
 
-    #[ORM\Column(name: 'pseudo_user', type: 'string', length: 50)]
-    private string $pseudo;
+    #[ORM\Column(name: 'nom_user', type: 'string', length: 50)]
+    private string $nom;
+    #[ORM\Column(name: 'prenom_user', type: 'string', length: 50)]
+    private string $prenom;
 
     #[ORM\Column(name: 'email_user', type: 'string', length: 100, unique: true)]
     private string $email;
@@ -21,25 +23,36 @@ class User
     #[ORM\Column(name: 'password_user', type: 'string')]
     private string $password;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    public function getPseudo(): string
+    public function getId(): int
     {
-        return $this->pseudo;
+        return $this->id;
     }
 
-    public function setPseudo(string $pseudo): void
+    public function getNom(): string
     {
-        $this->pseudo = $pseudo;
+        return $this->nom;
     }
+
+    public function setPrenom(string $prenom): void
+    {
+        $this->prenom = $prenom;
+    }
+    public function getPrenom(): string
+    {
+        return $this->prenom;
+    }
+
+    public function setNom(string $nom): void
+    {
+        $this->nom = $nom;
+    }
+
 
     public function getEmail(): string
     {
