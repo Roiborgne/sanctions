@@ -28,7 +28,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <img src="assets/image/icone_gaudper.ico" alt="icon" class="me-5" style="height: 70px">
+            <img src="assets/image/icone_gaudper.ico" alt="icon" class="" style="height: 70px">
             <a class="navbar-brand" href="/">Gestion de Sanction</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,10 @@
                             <p class="btn btn-warning">Connecté en tant que <?php echo $_SESSION['user']['nom']?></p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/promotion">Ajouter une promotion</a>
+                            <a class="nav-link" href="/promotion/ajouter">Ajouter une promotion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/etudiant/importer">Importer des étudiants</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="/compte/disconnect"
@@ -68,12 +71,12 @@
 </header>
 
 <!-- Contenu principal -->
-<main class="container mx-auto px-4 flex-grow">
+<main class="container mx-auto px-4 flex-grow mt-5">
     <?= $content ?>
 </main>
 
 <!-- Footer commun -->
-<footer class="bg-dark text-light py-4 mt-5">
+<footer class="bg-dark text-light py-4 mt-5 fixed-bottom">
     <div class="container">
         <div class="text-decoration-none">
             <ul class="me-auto text-center">

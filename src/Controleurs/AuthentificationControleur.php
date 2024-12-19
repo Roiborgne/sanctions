@@ -34,18 +34,10 @@ public function __construct(EntityManager $entityManager){
 
                 // Tenter de créer le compte
                 $newAccount =  new CreateAccount($this->entityManager);
-                try {
-                    $newAccount-> execute($nom, $prenom, $email, $password, $confpassword);
-                }catch (\Exception $e){
-                    $_SESSION['warning'] = "Compte n'a pas été créé !";
-                }
-                // Si la création réussit
-                $_SESSION['success'] = "Compte créé avec succès !";
-                // Redirection vers l'accueil
-                $this->render('compte/connexion');
-                exit;
+                $newAccount-> execute($nom, $prenom, $email, $password, $confpassword);
 
             } catch (\InvalidArgumentException $e) {
+                $_SESSION['warning'] = "Compte n'a pas été créé !";
                 // Stocker le message d'erreur dans la session
                 $_SESSION['error'] = $e->getMessage();
 
@@ -59,6 +51,13 @@ public function __construct(EntityManager $entityManager){
                 $this->render('compte/creer');
                 exit;
             }
+
+            // Si la création réussit
+            $_SESSION['success'] = "Compte créé avec succès !";
+            // Redirection vers l'accueil
+            $this->render('compte/connexion');
+            exit;
+
         }
         $this->render('compte/creer');
     }

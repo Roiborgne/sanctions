@@ -13,4 +13,7 @@ class VueControleur extends AbstractController
     public function promotion(){
         $this->render('/promotion/ajouter');
     }
+    public function etudiant(){
+        $this->render('/etudiant/importer');
+    }
 }

@@ -22,15 +22,13 @@ class PromotionControleur extends AbstractController {
             try {
                 // Récupérer les données du formulaire
                 $libelle = trim($_POST['libelle']);
-                $annee = trim($_POST['Annee']);
+                $annee = trim($_POST['annee']);
 
                 // Tenter de créer la promotion
                 $newProm =  new Promotion($this->entityManager);
-                try {
-                    $newProm-> ajouterProm($libelle, $annee);
-                }catch (\Exception $e){
-                    $_SESSION["message"]['warning'] = "La promotion n'a pas été créé !";
-                }
+                $newProm-> ajouterProm($libelle, $annee);
+
+
                 // Si la création réussit
                 $_SESSION["message"]['success'] = "La promotion créé avec succès !";
                 // Redirection vers l'accueil
@@ -38,6 +36,7 @@ class PromotionControleur extends AbstractController {
                 exit;
 
             } catch (\InvalidArgumentException $e) {
+                $_SESSION["message"]['warning'] = "La promotion n'a pas été créé !";
                 // Stocker le message d'erreur dans la session
                 $_SESSION['error'] = $e->getMessage();
 
@@ -47,10 +46,10 @@ class PromotionControleur extends AbstractController {
                     'annee' => $annee,
                 ];
                 // Rediriger vers le formulaire
-                //$this->render('/promotion');
+                $this->render('promotion/ajouter');
                 exit;
             }
         }
-        $this->render('/promotion');
+        $this->render('/promotion/ajouter');
     }
 }

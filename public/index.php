@@ -23,22 +23,14 @@ if (!isset($routes[$uri])) {
 [$controllerName, $action] = $routes[$uri];
 $controllerClass = "App\\Controleurs\\{$controllerName}";
 
-//if ($controllerName == "InscriptionControleur"){
-//    $createAccount = new \App\UsersStory\CreateAccount($entityManager);
-//    $inscriptionControleur = new \App\Controleurs\InscriptionControleur($createAccount);
-//    $inscriptionControleur->$action();
-//}elseif ($controllerName == "ConnexionControleur"){
-//    $loginUser = new \App\UsersStory\Login($entityManager);
-//    $connexionController = new \App\Controleurs\ConnexionControleur($loginUser);
-//    $connexionController->$action();
-//}else{
-    try {
+
+   // try {
         // Instanciation du contrôleur et appel de l'action
         $controller = new $controllerClass($entityManager);
         $controller->$action();
-    } catch (\Exception $e) {
-        error_log($e->getMessage());
-        $errorController = new \App\Controleurs\ErrorController();
-        $errorController->error404();
-    }
+    //} catch (\Exception $e) {
+    //    error_log($e->getMessage());
+    //    $errorController = new \App\Controleurs\ErrorController();
+    //    $errorController->error404();
+    //}
 

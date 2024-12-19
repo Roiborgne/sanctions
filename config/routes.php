@@ -11,9 +11,10 @@ return [
     //vue
     '/inscription' => ['VueControleur', 'inscription'],
     '/connexion' => ['VueControleur', 'connexion'],
-    '/promotion' => ['VueControleur', 'promotion'],
     //promotion
     '/promotion/ajouter' => ['PromotionControleur', 'ajouter'],
+    //étudiant
+    '/etudiant/importer' => ['EtudiantControleur', 'importer'],
     //legal
     '/mentions' => ['HomeController', 'legal']
 ]; 
