@@ -48,7 +48,7 @@
                             <a class="nav-link" href="/promotion/ajouter">Ajouter une promotion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/etudiant/importer">Importer des étudiants</a>
+                            <a class="nav-link" href="/etudiant/index">Importer des étudiants</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="/compte/disconnect"
@@ -76,7 +76,7 @@
 </main>
 
 <!-- Footer commun -->
-<footer class="bg-dark text-light py-4 mt-5 fixed-bottom">
+<footer class="bg-dark text-light py-4 mt-5">
     <div class="container">
         <div class="text-decoration-none">
             <ul class="me-auto text-center">

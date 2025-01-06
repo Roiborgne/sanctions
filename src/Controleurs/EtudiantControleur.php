@@ -23,7 +23,7 @@ class EtudiantControleur extends AbstractController {
         $promotions = $this->entityManager
             ->getRepository(Promotion::class)
             ->findAll();
-
+        var_dump($promotions);
         $this->render('etudiant/importer', [
             'promotions' => $promotions,
             'entityManager' => $this->entityManager

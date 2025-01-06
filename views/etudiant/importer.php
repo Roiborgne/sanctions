@@ -33,20 +33,26 @@
                            id="fichier"
                            name="fichier"
                            value="<?= htmlspecialchars($_SESSION['form_data']['fichier'] ?? '') ?>"
-                           accept="text/css"
+                           accept=".csv"
                            required>
                 </div>
 
                 <div class="mb-3">
+                    <?php if (!empty($promotions)): ?>
                     <label for="prom" class="form-label">Promotion associée*</label>
                     <select class="form-select" id="prom" name="prom" required>
-                        <option value="">Sélectionnez une promotion</option>
-                        <?php foreach ($promotions as $promotion): ?>
-                            <option value="<?= $promotion->getId() ?>" <?= (isset($_SESSION['form_data']['prom']) && $_SESSION['form_data']['prom'] == $promotion->getId()) ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($promotion->getLibelle()) ?> - <?= htmlspecialchars($promotion->getAnnee()) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                    <option value="">Sélectionnez une promotion</option>
+                    <?php foreach ($promotions as $promotion): ?>
+                    <option value="<?= $promotion->getId() ?>" <?= (isset($_SESSION['form_data']['prom']) && $_SESSION['form_data']['prom'] == $promotion->getId()) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($promotion->getLibelle()) ?> - <?= htmlspecialchars($promotion->getAnnee()) ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+                    <?php else: ?>
+                    <div class="alert alert-warning">
+                        Aucune promotion disponible. Veuillez en ajouter une avant d'importer des étudiants.
+                    </div>
+        <?php endif; ?>
                 </div>
 
                 <div class="d-grid">

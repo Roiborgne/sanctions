@@ -15,6 +15,7 @@ return [
     '/promotion/ajouter' => ['PromotionControleur', 'ajouter'],
     //étudiant
     '/etudiant/importer' => ['EtudiantControleur', 'importer'],
+    '/etudiant/index' => ['EtudiantControleur', 'index'],
     //legal
     '/mentions' => ['HomeController', 'legal']
 ]; 
