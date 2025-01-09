@@ -16,7 +16,7 @@
         footer {
             position: relative;
             height: 200px;
-            margin-top: -200px;
+            margin-top: 100px;
         }
         ul{
             list-style-type: none;

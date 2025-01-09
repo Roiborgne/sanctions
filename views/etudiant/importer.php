@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <?php if (!empty($promotions)): ?>
+                    <?php if (!empty($promotions)):?>
                     <label for="prom" class="form-label">Promotion associée*</label>
                     <select class="form-select" id="prom" name="prom" required>
                     <option value="">Sélectionnez une promotion</option>

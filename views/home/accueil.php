@@ -25,7 +25,7 @@
         </div>
         <div class="mt-4">
             <a href="/promotion/ajouter" class="btn btn-primary btn-lg mx-2">Promotion</a>
-            <a href="/etudiant/importer" class="btn btn-primary btn-lg mx-2">Etudiant</a>
+            <a href="/etudiant/index" class="btn btn-primary btn-lg mx-2">Etudiant</a>
             <a class="btn btn-primary btn-lg mx-2" href="/compte/disconnect"
                onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?')">
                 Déconnexion

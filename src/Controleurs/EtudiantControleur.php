@@ -2,6 +2,7 @@
 
 namespace App\Controleurs;
 
+use App\Entity\Promotions;
 use App\UsersStory\Etudiant;
 use App\UsersStory\CreateAccount;
 use App\UsersStory\Promotion;
@@ -20,10 +21,9 @@ class EtudiantControleur extends AbstractController {
     public function index(): void
     {
         // Récupérer toutes les promotions
-        $promotions = $this->entityManager
-            ->getRepository(Promotion::class)
-            ->findAll();
-        var_dump($promotions);
+        $recupprom = $this->entityManager
+            ->getRepository(Promotions::class);
+        $promotions = $recupprom->findall();
         $this->render('etudiant/importer', [
             'promotions' => $promotions,
             'entityManager' => $this->entityManager
