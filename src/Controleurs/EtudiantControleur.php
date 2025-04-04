@@ -54,7 +54,15 @@ class EtudiantControleur extends AbstractController {
                 $newEtudiant->importerEtudiant($fichier, $prom);
 
                 // Si l'importation réussit
-                $_SESSION["message"]['success'] = "Les étudiants ont été importés avec succès !";
+                $resultat = $newEtudiant->importerEtudiant($fichier, $prom);
+
+                $message = "{$resultat['importés']} étudiant(s) ont été importé(s) avec succès.";
+                if ($resultat['ignorés'] > 0) {
+                    $message .= " {$resultat['ignorés']} ligne(s) ont été ignorée(s) (format invalide).";
+                }
+
+                $_SESSION["message"]['success'] = $message;
+
                 $this->redirect('/');
                 exit;
 

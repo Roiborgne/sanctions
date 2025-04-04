@@ -25,7 +25,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/etudiant/importer" method="POST" class="needs-validation" novalidate>
+            <form action="/etudiant/importer" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="fichier" class="form-label">Fichier*</label>
                     <input type="file"

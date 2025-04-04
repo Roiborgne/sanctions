@@ -20,7 +20,7 @@ class Etudiants //Extends Promotions
     private string $prenom;
 
     #[ORM\ManyToOne(targetEntity: Promotions::class)]
-    #[ORM\JoinColumn(name: 'id_prom', nullable: false)]
+    #[ORM\JoinColumn(name: 'id_prom', referencedColumnName: "id_prom", nullable: false)]
     private Promotions $promotion;
 
     public function getId(): int
