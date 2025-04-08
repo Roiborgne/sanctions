@@ -10,9 +10,15 @@
                     <h2 class="mb-0 text-center text-secondary">Créer une sanction</h2>
                 </div>
                 <div class="card-body">
-                    <?php if (isset($errors['general'])): ?>
+                    <?php if (!empty($errors['general'])): ?>
                         <div class="alert alert-danger">
                             <?= htmlspecialchars($errors['general']) ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($errors['form'])): ?>
+                        <div class="alert alert-danger">
+                            <?= htmlspecialchars($errors['form']) ?>
                         </div>
                     <?php endif; ?>
 
@@ -20,7 +26,7 @@
 
                         <!-- PROMOTIONS -->
                         <div class="mb-3">
-                            <label for="id_prom" class="form-label">Promotion</label>
+                            <label for="id_prom" class="form-label">Promotion*</label>
                             <select class="form-select" id="id_prom" name="id_prom" required onchange="this.form.submit()">
                                 <option value="">Sélectionner une promotion</option>
                                 <?php foreach ($promotions as $promotion): ?>
@@ -35,11 +41,11 @@
                         <!-- ETUDIANTS -->
                         <?php if (!empty($etudiants)): ?>
                             <div class="mb-3">
-                                <label for="id_etudiant" class="form-label">Étudiant</label>
+                                <label for="id_etudiant" class="form-label">Étudiant*</label>
                                 <select class="form-select" id="id_etudiant" name="id_etudiant" required>
                                     <option value="">Sélectionner un étudiant</option>
                                     <?php foreach ($etudiants as $etudiant): ?>
-                                        <option value="<?= $etudiant->getId() ?>" <?= $formData['id_etudiant'] = $etudiant->getId() ? 'selected' : '' ?>>
+                                        <option value="<?= $etudiant->getId() ?>" <?= $formData['id_etudiant'] = $etudiant->getId()?>>
                                             <?= htmlspecialchars($etudiant->getPrenom()) ?> <?= htmlspecialchars($etudiant->getNom()) ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -47,24 +53,24 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="nom_professeur" class="form-label">Nom du professeur</label>
+                                <label for="nom_professeur" class="form-label">Nom du professeur*</label>
                                 <input type="text" class="form-control" id="nom_professeur" name="nom_professeur"
                                        value="<?= htmlspecialchars($formData['nom_professeur']) ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="motif" class="form-label">Motif</label>
+                                <label for="motif" class="form-label">Motif*</label>
                                 <input type="text" class="form-control" id="motif" name="motif"
                                        value="<?= htmlspecialchars($formData['motif']) ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description détaillée</label>
+                                <label for="description" class="form-label">Description détaillée*</label>
                                 <textarea class="form-control" id="description" name="description" rows="4" required><?= htmlspecialchars($formData['description']) ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label for="date_incident" class="form-label">Date de l'incident</label>
+                                <label for="date_incident" class="form-label">Date de l'incident*</label>
                                 <input type="date" class="form-control" id="date_incident" name="date_incident"
                                        value="<?= htmlspecialchars($formData['date_incident']) ?>" required>
                             </div>

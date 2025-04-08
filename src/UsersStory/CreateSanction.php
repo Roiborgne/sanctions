@@ -30,8 +30,16 @@ class CreateSanction
             throw new \InvalidArgumentException("Tous les champs doivent être remplis.");
         }
 
-        if (!strtotime($dateIncident)) {
-            throw new \InvalidArgumentException("La date de l'incident est invalide.");
+        $dateIncidentObj = \DateTime::createFromFormat('Y-m-d', $dateIncident);
+        if ($dateIncidentObj === false) {
+            throw new \InvalidArgumentException("Le format de la date de l'incident est invalide.");
+        }
+
+        // Vérifier que la date de l'incident n'est pas dans le futur
+        $dateIncidentObj = new \DateTime($dateIncident);
+        $currentDate = new \DateTime();
+        if ($dateIncidentObj > $currentDate) {
+            throw new \InvalidArgumentException("La date de l'incident ne peut pas être dans le futur.");
         }
 
         // Vérifie si l'étudiant et l'utilisateur (createur) existent

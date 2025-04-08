@@ -20,9 +20,6 @@
     <?php endif; ?>
 
     <?php if (isset($_SESSION['user'])): ?>
-        <div class="alert alert-success">
-            Bonjour <?= $_SESSION['user']['prenom'] ?> !
-        </div>
         <div class="mt-4">
             <a href="/promotion/ajouter" class="btn btn-primary btn-lg mx-2">Promotion</a>
             <a href="/etudiant/index" class="btn btn-primary btn-lg mx-2">Etudiant</a>

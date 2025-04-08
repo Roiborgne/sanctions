@@ -60,7 +60,6 @@
 
     <div class="mt-4 text-center">
         <a href="/sanction/create" class="btn btn-success me-2">Créer une nouvelle sanction</a>
-        <a href="/promotions" class="btn btn-secondary">Voir les promotions</a>
     </div>
 </div>
 <?php } ?>

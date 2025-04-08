@@ -102,9 +102,9 @@
                 <li>
                     <a class="text-decoration-none text-light" href="/"> contact</a>
                 <li>
-                    <a class="text-decoration-none text-light" href="https://www.facebook.com/gaudper.abraham/?locale=ml_IN"><i class="bi bi-facebook text-light"></i></a>
-                    <a class="text-decoration-none text-light" href="https://www.instagram.com/gaudper/"><i class="bi bi-instagram text-light"></i></a>
-                    <a class="text-decoration-none text-light" href="https://www.facebook.com/gaudper.abraham/?locale=ml_IN"><i class="bi bi-linkedin text-light"></i></a>
+                    <a class="text-decoration-none text-light" href="https://www.facebook.com/gaudper.abraham/?locale=ml_IN" target="_blank"><i class="bi bi-facebook text-light"></i></a>
+                    <a class="text-decoration-none text-light" href="https://www.instagram.com/gaudper/" target="_blank"><i class="bi bi-instagram text-light"></i></a>
+                    <a class="text-decoration-none text-light" href="https://www.facebook.com/gaudper.abraham/?locale=ml_IN" target="_blank"><i class="bi bi-linkedin text-light"></i></a>
                 </li>
             </ul>
         </div>
