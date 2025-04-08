@@ -25,7 +25,6 @@ class CreateSanction
         int    $createurId
     ): Sanctions
     {
-
         // Validation
         if (empty($etudiantId) || empty($nomProfesseur) || empty($motif) || empty($description) || empty($dateIncident)) {
             throw new \InvalidArgumentException("Tous les champs doivent être remplis.");
@@ -36,12 +35,12 @@ class CreateSanction
         }
 
         // Vérifie si l'étudiant et l'utilisateur (createur) existent
-        $etudiant = $this->entityManager->getRepository(Etudiant::class)->find($etudiantId);
+        $etudiant = $this->entityManager->getRepository(Etudiants::class)->find($etudiantId);
         if (!$etudiant) {
             throw new \InvalidArgumentException("Étudiant non trouvé.");
         }
 
-        $createur = $this->entityManager->getRepository(User::class)->find($createurId);
+        $createur = $this->entityManager->getRepository(Users::class)->find($createurId);
         if (!$createur) {
             throw new \InvalidArgumentException("Utilisateur créateur non trouvé.");
         }

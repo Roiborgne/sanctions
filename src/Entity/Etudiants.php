@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-use App\UsersStory\Etudiant;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]

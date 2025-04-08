@@ -3,9 +3,7 @@
 namespace App\Controleurs;
 
 use App\Entity\Promotions;
-use App\UsersStory\Etudiant;
-use App\UsersStory\CreateAccount;
-use App\UsersStory\Promotion;
+use App\UsersStory\ImporterEtudiant;
 use Doctrine\ORM\EntityManager;
 
 
@@ -50,7 +48,7 @@ class EtudiantControleur extends AbstractController {
                 }
 
                 // Tenter de créer l'étudiant
-                $newEtudiant = new Etudiant($this->entityManager);
+                $newEtudiant = new ImporterEtudiant($this->entityManager);
                 $newEtudiant->importerEtudiant($fichier, $prom);
 
                 // Si l'importation réussit

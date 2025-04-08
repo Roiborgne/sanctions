@@ -2,10 +2,9 @@
 
 namespace App\UsersStory;
 
-use App\Entity\Etudiants;
 use Doctrine\ORM\EntityManager;
 
-class Etudiant
+class ImporterEtudiant
 {
 
     private EntityManager $entityManager;
@@ -15,7 +14,7 @@ class Etudiant
         $this->entityManager = $entityManager;
     }
 
-    public function importerEtudiant($fichier, $prom): array
+    public function ImporterEtudiant($fichier, $prom): array
     {
         if (empty($fichier) || empty($prom)) {
             throw new \InvalidArgumentException("Tous les champs doivent être renseignés.");

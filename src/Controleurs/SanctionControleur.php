@@ -2,6 +2,7 @@
 
 namespace App\Controleurs;
 
+use App\Entity\Etudiants;
 use App\Entity\Sanctions;
 use App\Entity\Promotions;
 use App\UsersStory\CreateSanction;
@@ -17,7 +18,7 @@ class SanctionControleur extends AbstractController {
 
     public function index(): void
     {
-        $sanctions = $this->entityManager->getRepository(\App\Entity\Sanctions::class)->findAll();
+        $sanctions = $this->entityManager->getRepository(Sanctions::class)->findAll();
         $this->render('sanction/index', [
             'sanctions' => $sanctions,
             'entityManager' => $this->entityManager
@@ -26,40 +27,54 @@ class SanctionControleur extends AbstractController {
 
     public function create(): void
     {
-
-        $formData = $_POST ?? ['promotion_id' => '', 'id_etudiant' => '', 'nom_professeur' => '', 'motif' => '', 'description' => '', 'date_incident' => ''];
+        $formData = $_POST + [ // `+` au lieu de `??` pour éviter d’écraser les champs avec des chaînes vides
+                'id_prom' => '',
+                'id_etudiant' => '',
+                'nom_professeur' => '',
+                'motif' => '',
+                'description' => '',
+                'date_incident' => ''
+            ];
         $errors = [];
 
         $promotionRepo = $this->entityManager->getRepository(Promotions::class);
-        $etudiantRepo = $this->entityManager->getRepository(\App\Entity\Etudiants::class);
+        $etudiantRepo = $this->entityManager->getRepository(Etudiants::class);
 
         $promotions = $promotionRepo->findAll();
-        $etudiants = $etudiantRepo->findAll();
 
+        // Charger les étudiants SEULEMENT si une promotion a été sélectionnée
+        $etudiants = [];
+        if (!empty($formData['id_prom'])) {
+            $etudiants = $etudiantRepo->findBy(['promotion' => $formData['id_prom']]);
+        }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($formData['id_etudiant'])) {
+            try {
+                $createurId = $_SESSION['user']['id'];
 
-                try {
-                    $createurId = $_SESSION['user']['id'];
+                $useCase = new CreateSanction($this->entityManager);
+                $useCase->ajouterSanction(
+                    $formData['id_etudiant'],
+                    $formData['nom_professeur'],
+                    $formData['motif'],
+                    $formData['description'],
+                    $formData['date_incident'],
+                    $createurId
+                );
 
-                    $useCase = new CreateSanction($this->entityManager);
-                    $useCase->ajouterSanction(
-                        $formData['id_etudiant'],
-                        $formData['nom_professeur'],
-                        $formData['motif'],
-                        $formData['description'],
-                        $formData['date_incident'],
-                        $createurId
-                    );
-                    print_r($useCase);
-                    $this->render('/sanction/index');
-
-                    exit;
-                } catch (\Exception $e) {
-                    $errors['general'] = $e->getMessage();
-                }
+                // Rediriger vers l'index après succès
+                header("Location: /sanction");
+                exit;
+            } catch (\Exception $e) {
+                $errors['general'] = $e->getMessage();
             }
-        $this->render('/sanction/create',["promotions" =>$promotions,
-            'etudiants' => $etudiants,]);
+        }
+
+        $this->render('/sanction/create', [
+            "promotions" => $promotions,
+            'etudiants' => $etudiants,
+            'formData' => $formData,
+            'errors' => $errors
+        ]);
     }
 }

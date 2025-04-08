@@ -26,7 +26,7 @@
 
                             <div class="mb-2">
                                 <strong>Promotion :</strong><br>
-                                <?= htmlspecialchars($sanction->getEtudiant()->getPromotion()->getLibelle()) ?>
+                                <?= htmlspecialchars($sanction->getEtudiant()->getProm()->getLibelle()) ?>
                             </div>
 
                             <div class="mb-2">
@@ -49,7 +49,7 @@
                                 <small>Ajoutée le <?= $sanction->getDateCreation()->format('d/m/Y H:i') ?></small>
                             </div>
                             <div>
-                                <small>Surveillant : <?= htmlspecialchars($sanction->getCreateur()->getNom()) ?></small>
+                                <small>Surveillant : <?= htmlspecialchars($sanction->getUser()->getNom()) ?></small>
                             </div>
                         </div>
                     </div>

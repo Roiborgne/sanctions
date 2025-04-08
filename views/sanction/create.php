@@ -24,12 +24,12 @@
                             <select class="form-select" id="id_prom" name="id_prom" required onchange="this.form.submit()">
                                 <option value="">Sélectionner une promotion</option>
                                 <?php foreach ($promotions as $promotion): ?>
-
-                                    <option value="<?= $promotion->getId() ?>" <?= $formData['id_prom'] = $promotion->getId()?>>
+                                    <option value="<?= $promotion->getId() ?>" <?= $formData['id_prom'] == $promotion->getId() ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($promotion->getLibelle()) ?> - <?= htmlspecialchars($promotion->getAnnee()) ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
+
                         </div>
 
                         <!-- ETUDIANTS -->

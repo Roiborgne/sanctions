@@ -9,37 +9,34 @@ class Sanctions
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name:'id',type: 'integer')]
+    #[ORM\Column(name:'id', type: 'integer')]
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: Etudiants::class)]
-    #[ORM\JoinColumn(name: 'id_etudiant', nullable: false)]
-    #[ORM\Column(name: 'id_etudiant', type: 'integer')]
+    #[ORM\JoinColumn(name: 'id_etudiant', referencedColumnName: 'id_etudiant', nullable: false)]
     private Etudiants $etudiant;
 
-    #[ORM\Column(name: 'nom_prof',type: 'string', length: 255)]
+    #[ORM\Column(name: 'nom_professeur', type: 'string', length: 255)]
     private string $nomProfesseur;
 
-    #[ORM\Column(name: 'motif',type: 'string', length: 255)]
+    #[ORM\Column(name: 'motif', type: 'string', length: 255)]
     private string $motif;
 
-    #[ORM\Column(name: 'description',type: 'text')]
+    #[ORM\Column(name: 'description', type: 'text')]
     private string $description;
 
-    #[ORM\Column(name: 'date_incident',type: 'datetime')]
+    #[ORM\Column(name: 'date_incident', type: 'datetime')]
     private \DateTime $dateIncident;
 
-    #[ORM\Column(name: 'date_creation',type: 'datetime')]
+    #[ORM\Column(name: 'date_creation', type: 'datetime')]
     private \DateTime $dateCreation;
 
     #[ORM\ManyToOne(targetEntity: Users::class)]
-    #[ORM\JoinColumn(name: 'id_user', nullable: false)]
-    #[ORM\Column(name: 'id_user', type: 'integer')]
+    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id_user', nullable: false)]
     private Users $user;
 
     // Getters / Setters
-
-    public function getId_etudiant(): int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -48,6 +45,7 @@ class Sanctions
     {
         return $this->etudiant;
     }
+
     public function setEtudiant(Etudiants $etudiant): self
     {
         $this->etudiant = $etudiant;
@@ -58,6 +56,7 @@ class Sanctions
     {
         return $this->nomProfesseur;
     }
+
     public function setNomProfesseur(string $nomProfesseur): self
     {
         $this->nomProfesseur = $nomProfesseur;
@@ -68,6 +67,7 @@ class Sanctions
     {
         return $this->motif;
     }
+
     public function setMotif(string $motif): self
     {
         $this->motif = $motif;
@@ -78,6 +78,7 @@ class Sanctions
     {
         return $this->description;
     }
+
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -88,9 +89,10 @@ class Sanctions
     {
         return $this->dateIncident;
     }
-    public function setDateIncident(\DateTime $date): self
+
+    public function setDateIncident(\DateTime $dateIncident): self
     {
-        $this->dateIncident = $date;
+        $this->dateIncident = $dateIncident;
         return $this;
     }
 
@@ -98,9 +100,10 @@ class Sanctions
     {
         return $this->dateCreation;
     }
-    public function setDateCreation(\DateTime $date): self
+
+    public function setDateCreation(\DateTime $dateCreation): self
     {
-        $this->dateCreation = $date;
+        $this->dateCreation = $dateCreation;
         return $this;
     }
 
@@ -108,6 +111,7 @@ class Sanctions
     {
         return $this->user;
     }
+
     public function setUser(Users $user): self
     {
         $this->user = $user;
