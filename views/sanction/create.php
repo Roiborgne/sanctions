@@ -1,3 +1,6 @@
+<?php $title = "Créer une sanction - Mon Site"; ?>
+<?php if (isset($_SESSION["user"])){ ?>
+
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,15 +16,16 @@
                         </div>
                     <?php endif; ?>
 
-                    <form method="POST" novalidate>
+                    <form class="form" method="POST" novalidate>
 
                         <!-- PROMOTIONS -->
                         <div class="mb-3">
-                            <label for="promotion_id" class="form-label">Promotion</label>
-                            <select class="form-select" id="promotion_id" name="promotion_id" required onchange="this.form.submit()">
+                            <label for="id_prom" class="form-label">Promotion</label>
+                            <select class="form-select" id="id_prom" name="id_prom" required onchange="this.form.submit()">
                                 <option value="">Sélectionner une promotion</option>
                                 <?php foreach ($promotions as $promotion): ?>
-                                    <option value="<?= $promotion->getId() ?>" <?= $formData['promotion_id'] == $promotion->getId() ? 'selected' : '' ?>>
+
+                                    <option value="<?= $promotion->getId() ?>" <?= $formData['id_prom'] = $promotion->getId()?>>
                                         <?= htmlspecialchars($promotion->getLibelle()) ?> - <?= htmlspecialchars($promotion->getAnnee()) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -31,11 +35,11 @@
                         <!-- ETUDIANTS -->
                         <?php if (!empty($etudiants)): ?>
                             <div class="mb-3">
-                                <label for="etudiant_id" class="form-label">Étudiant</label>
-                                <select class="form-select" id="etudiant_id" name="etudiant_id" required>
+                                <label for="id_etudiant" class="form-label">Étudiant</label>
+                                <select class="form-select" id="id_etudiant" name="id_etudiant" required>
                                     <option value="">Sélectionner un étudiant</option>
                                     <?php foreach ($etudiants as $etudiant): ?>
-                                        <option value="<?= $etudiant->getId() ?>" <?= $formData['etudiant_id'] == $etudiant->getId() ? 'selected' : '' ?>>
+                                        <option value="<?= $etudiant->getId() ?>" <?= $formData['id_etudiant'] = $etudiant->getId() ? 'selected' : '' ?>>
                                             <?= htmlspecialchars($etudiant->getPrenom()) ?> <?= htmlspecialchars($etudiant->getNom()) ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -77,3 +81,4 @@
         </div>
     </div>
 </div>
+<?php } ?>

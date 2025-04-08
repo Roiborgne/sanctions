@@ -32,4 +32,16 @@ abstract class AbstractController
             exit;
         }
     }
+    protected function isAuthenticated(): bool
+    {
+        // return si on est connecter ou pas
+        return !empty($_SESSION['user']);
+    }
+    protected function requireAuth(): void
+    {
+        // si on a besoin d'etre connecter alors on return sur la page login
+        if (!$this->isAuthenticated()) {
+            $this->redirect('/connexion');
+        }
+    }
 } 

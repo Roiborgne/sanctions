@@ -5,48 +5,50 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'sanctions')]
-class Sanction
+class Sanctions
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(name:'id',type: 'integer')]
     private int $id;
 
-    #[ORM\ManyToOne(targetEntity: Etudiant::class)]
-    #[ORM\JoinColumn(name: 'etudiant_id', referencedColumnName: 'id', nullable: false)]
-    private Etudiant $etudiant;
+    #[ORM\ManyToOne(targetEntity: Etudiants::class)]
+    #[ORM\JoinColumn(name: 'id_etudiant', nullable: false)]
+    #[ORM\Column(name: 'id_etudiant', type: 'integer')]
+    private Etudiants $etudiant;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(name: 'nom_prof',type: 'string', length: 255)]
     private string $nomProfesseur;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(name: 'motif',type: 'string', length: 255)]
     private string $motif;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(name: 'description',type: 'text')]
     private string $description;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(name: 'date_incident',type: 'datetime')]
     private \DateTime $dateIncident;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(name: 'date_creation',type: 'datetime')]
     private \DateTime $dateCreation;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'createur_id', referencedColumnName: 'id', nullable: false)]
-    private User $createur;
+    #[ORM\ManyToOne(targetEntity: Users::class)]
+    #[ORM\JoinColumn(name: 'id_user', nullable: false)]
+    #[ORM\Column(name: 'id_user', type: 'integer')]
+    private Users $user;
 
     // Getters / Setters
 
-    public function getId(): int
+    public function getId_etudiant(): int
     {
         return $this->id;
     }
 
-    public function getEtudiant(): Etudiant
+    public function getEtudiant(): Etudiants
     {
         return $this->etudiant;
     }
-    public function setEtudiant(Etudiant $etudiant): self
+    public function setEtudiant(Etudiants $etudiant): self
     {
         $this->etudiant = $etudiant;
         return $this;
@@ -102,13 +104,13 @@ class Sanction
         return $this;
     }
 
-    public function getCreateur(): User
+    public function getUser(): Users
     {
-        return $this->createur;
+        return $this->user;
     }
-    public function setCreateur(User $createur): self
+    public function setUser(Users $user): self
     {
-        $this->createur = $createur;
+        $this->user = $user;
         return $this;
     }
 }

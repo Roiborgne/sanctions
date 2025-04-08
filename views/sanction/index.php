@@ -1,3 +1,6 @@
+<?php $title = "importer des étudiants - Mon Site"; ?>
+<?php if (isset($_SESSION["user"])){ ?>
+
 <div class="container mt-4">
 
     <h2 class="text-center mb-4 text-primary">Liste des sanctions</h2>
@@ -60,3 +63,4 @@
         <a href="/promotions" class="btn btn-secondary">Voir les promotions</a>
     </div>
 </div>
+<?php } ?>

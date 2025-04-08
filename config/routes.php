@@ -16,7 +16,7 @@ return [
     //étudiant
     '/etudiant/importer' => ['EtudiantControleur', 'importer'],
     '/etudiant/index' => ['EtudiantControleur', 'index'],
-    //Sanction
+    //Sanctions
     '/sanction'=> ['SanctionControleur', 'index'],
     '/sanction/create'=> ['SanctionControleur', 'create'],
     //legal

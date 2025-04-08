@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'Mon Site' ?></title>
-    <link rel="icon" href="../public/assets/image/icone_gaudper.ico">
+    <link rel="icon" href="assets/image/icone_gaudper.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -41,21 +41,37 @@
                 </ul>
                 <ul class="navbar-nav">
                     <?php if (isset($_SESSION['user'])): ?>
-                        <li class="nav-item">
-                            <p class="btn btn-warning">Connecté en tant que <?php echo $_SESSION['user']['nom']?></p>
+                        <li class="nav-item me-5">
+                            <p class="btn btn-warning">Bonjour <?php echo $_SESSION['user']['nom']?></p>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/promotion/ajouter">Ajouter une promotion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/etudiant/index">Importer des étudiants</a>
-                        </li>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Menu
+                            </button>
+                            <ul class="dropdown-menu bg-dark">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/promotion/ajouter">Ajouter une promotion</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/etudiant/index">Importer des étudiants</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sanction">Liste des sanctions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sanction/create">Ajout de sanction</a>
+                                </li>
+                            </ul>
+                        </div>
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="/compte/disconnect"
                                onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?')">
                                 Déconnexion
                             </a>
                         </li>
+
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link" href="/connexion">Connexion</a>

@@ -11,7 +11,7 @@ class Etudiants //Extends Promotions
     #[ORM\Id]
     #[ORM\Column(name: 'id_etudiant', type: 'integer')]
     #[ORM\GeneratedValue]
-    private int $id;
+    private int $id_etudiant;
 
     #[ORM\Column(name: 'nom', type: 'string', length: 50)]
     private string $nom;
@@ -25,12 +25,12 @@ class Etudiants //Extends Promotions
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id_etudiant;
     }
 
-    public function setId(int $id): void
+    public function setId(int $id_etudiant): void
     {
-        $this->id = $id;
+        $this->id_etudiant = $id_etudiant;
     }
 
     public function getNom(): string
