@@ -16,7 +16,7 @@ class Sanctions
     #[ORM\JoinColumn(name: 'id_etudiant', referencedColumnName: 'id_etudiant', nullable: false)]
     private Etudiants $etudiant;
 
-    #[ORM\Column(name: 'nom_professeur', type: 'string', length: 255)]
+    #[ORM\Column(name: 'nom_prof', type: 'string', length: 255)]
     private string $nomProfesseur;
 
     #[ORM\Column(name: 'motif', type: 'string', length: 255)]
