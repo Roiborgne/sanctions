@@ -18,14 +18,17 @@ class EtudiantControleur extends AbstractController {
     }
     public function index(): void
     {
-        // Récupérer toutes les promotions
-        $recupprom = $this->entityManager
-            ->getRepository(Promotions::class);
-        $promotions = $recupprom->findall();
-        $this->render('etudiant/importer', [
-            'promotions' => $promotions,
-            'entityManager' => $this->entityManager
-        ]);
+        if (isset($_SESSION['user'])) {
+            // Récupérer toutes les promotions
+            $recupprom = $this->entityManager
+                ->getRepository(Promotions::class);
+            $promotions = $recupprom->findall();
+            $this->render('etudiant/importer', [
+                'promotions' => $promotions,
+                'entityManager' => $this->entityManager
+            ]);
+        }
+        $this->render('/compte/connexion');
     }
     public function Importer()
     {
